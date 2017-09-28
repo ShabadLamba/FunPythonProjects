@@ -1,0 +1,54 @@
+<!doctype html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+
+<title>READLY</title>
+<body class=page>
+	<div class=page>
+		 <h1 class=heading>READLY</h1> 
+			{% for message in get_flashed_messages() %}
+		 		
+				<div class=flash>{{ message }}</div>
+
+	 		{% endfor %}
+		<div class=data id="text">
+			{{Data}}
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
+<script>
+
+var msg = new SpeechSynthesisUtterance();
+var voices = window.speechSynthesis.getVoices();
+console.log(voices);
+msg.voice = voices[2]; // Note: some voices don't support altering params
+msg.voiceURI = 'native';
+msg.volume = 1; // 0 to 1
+msg.rate = 1; // 0.1 to 10
+msg.pitch = 0; //0 to 2
+msg.text = '';
+msg.lang = 'en-US';
+
+msg.onend = function(e) {
+  console.log('Finished in ' + event.elapsedTime + ' seconds.');
+};
+
+var start = function() {
+	msg.text = $('#text').text();
+	var textarr = msg.text.split('.');
+	var html = '';
+	for(var i=0; i<textarr.length; i++) {
+		html = html + '<br><br>' + textarr[i];
+	}
+	$('#text').html(html);
+	speechSynthesis.speak(msg);	
+}
+
+setTimeout(function() {
+	start();
+}, 100);
+
+</script>

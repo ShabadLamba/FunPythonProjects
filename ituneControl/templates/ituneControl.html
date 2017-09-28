@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+<head>
+<title>ItunesControls</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body bgcolor="#FFFFEC">
+  <div class=heading>
+    <h1>ItuneControls</h1>
+    <hr width=50% >
+    <div class=data>
+        <dl>
+          <dt><div id="status"></div>
+          <br>
+          <div>
+          <dt><button id="play">Play</button> <button id="pause">Pause</button>
+          </div>
+          <div>
+          <dt><button id="next">Next</button> <button id="previous">Previous</button>
+          </div>
+          <div>
+          <dt><button id="volumeUp">VolUp</button> <button id="volumeDown">VolDown</button>
+          </div>
+        </dl>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+
+  function play() {
+    var data = JSON.stringify({input: "Play"});
+    $.ajax("/", {
+        data: data,
+        contentType : "application/json",
+        type : "POST"
+    }).success(function(data) {
+      // console.log(data);
+      // $("#status").text('')
+      // $("#status").append(data.output);
+    }).fail(function(err){
+      console.log(err);
+    });
+  }
+
+  function pause() {
+    var data = JSON.stringify({input: "Pause"});
+    $.ajax("/", {
+        data: data,
+        contentType : "application/json",
+        type : "POST"
+    }).success(function(data) {
+      // console.log(data);
+      // $("#output").text('')
+      // $("#output").append(data.output);
+    }).fail(function(err){
+      console.log(err);
+    });
+  }
+
+  function next() {
+    var data = JSON.stringify({input: "Next"});
+    $.ajax("/", {
+        data: data,
+        contentType : "application/json",
+        type : "POST"
+    }).success(function(data) {
+      // console.log(data);
+      // $("#status").text('')
+      // $("#status").append(data.output);
+    }).fail(function(err){
+      console.log(err);
+    });
+  }
+
+  function previous() {
+    var data = JSON.stringify({input: "Previous"});
+    $.ajax("/", {
+        data: data,
+        contentType : "application/json",
+        type : "POST"
+    }).success(function(data) {
+      // console.log(data);
+      // $("#output").text('')
+      // $("#output").append(data.output);
+    }).fail(function(err){
+      console.log(err);
+    });
+  }
+
+  function volumeUp() {
+    var data = JSON.stringify({input: "Up"});
+    $.ajax("/", {
+        data: data,
+        contentType : "application/json",
+        type : "POST"
+    }).success(function(data) {
+      // console.log(data);
+      // $("#output").text('')
+      // $("#output").append(data.output);
+    }).fail(function(err){
+      console.log(err);
+    });
+  }
+
+  function volumeDown() {
+    var data = JSON.stringify({input: "Down"});
+    $.ajax("/", {
+        data: data,
+        contentType : "application/json",
+        type : "POST"
+    }).success(function(data) {
+      // console.log(data);
+      // $("#output").text('')
+      // $("#output").append(data.output);
+    }).fail(function(err){
+      console.log(err);
+    });
+  }
+
+  $("#play").on('click', play);
+  $("#pause").on('click', pause);
+  $("#next").on('click', next);
+  $("#previous").on('click', previous);
+  $("#volumeUp").on('click', volumeUp);
+  $("#volumeDown").on('click', volumeDown);
+
+  </script>
+
+</body>
+</html>

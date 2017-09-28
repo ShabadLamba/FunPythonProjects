@@ -1,0 +1,21 @@
+import turtle
+import random
+
+def draw_shapes():
+#bring a screen
+    window = turtle.Screen()
+    window.bgcolor("blue")
+
+#making a square
+    brad = turtle.Turtle()
+    brad.shape("turtle")
+    brad.color("red")
+    brad.speed(8)
+    brad.tracer(None,5)
+    angle = 0
+    for j in range(0,36):
+        for i in range(0,4):
+            brad.forward(100)
+            brad.right(90)
+            #brad.forward(100)
+        brad.right(10)
